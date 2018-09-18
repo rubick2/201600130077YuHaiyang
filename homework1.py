@@ -3,16 +3,20 @@ import os
 import re
 
 word_list = list()
-root_dir = r"D:\program\python\IRandDM\work1\alt.atheism"
-for file in os.listdir(root_dir):
-    file_name = root_dir + "\\" + file
-    ff = open(file_name, "rb")
+root_1dir = r"D:\program\python\IRandDM\work1\20news-18828"
+for pack in os.listdir(root_1dir):
+    root_dir = root_1dir + "\\" + pack
 
-    letters = re.compile(r'[a-zA-Z]+-?[a-zA-Z]+')
+    for file in os.listdir(root_dir):
+        file_name = root_dir + "\\" + file
+        ff = open(file_name, "rb")
 
-    for line in ff:
-        str_line = str(line).strip().lower()
-        for word in re.findall(letters, str_line):
-            if word not in word_list:
+        letters = re.compile(r'[a-zA-Z.@0-9]+-?[a-zA-Z0-9]+')
+
+        for line in ff:
+            str_line = str(line).strip().lower()
+            for word in re.findall(letters, str_line):
                 word_list.append(word)
+
 print(word_list)
+print(len(set(word_list)))
