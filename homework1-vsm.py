@@ -4,6 +4,7 @@ import re
 import math
 
 f_stop = []
+templine = []
 IDF = {}
 TF = {}
 DF = {}
@@ -11,10 +12,10 @@ w = {}
 letters = re.compile(r'[a-zA-Z]+-?[a-zA-Z]+')
 
 
-def get_df(ffile):
+def get_df(file):
 
     tdic = {}
-    ff = open(ffile, "rb")
+    ff = open(file, "rb")
     for line in ff:
         str_line = str(line).strip().lower()
         for word in re.findall(letters, str_line):
@@ -31,7 +32,7 @@ def get_df(ffile):
     return tdic
 
 
-def get_N():
+def get_tf():
     num_doc = 0
     root_1dir = r"20news-18828"
     for pack in os.listdir(root_1dir):
@@ -49,7 +50,7 @@ def get_N():
 
 
 def get_idf():
-    N = get_N()
+    N = get_tf()
     for word in DF:
         IDF[word] = math.log(N / DF[word])
 
@@ -57,12 +58,19 @@ def get_idf():
 def get_w():
     for k1, k2 in TF:
         w[k1, k2] = TF[k1, k2] * IDF[k1]
+        templine.append("%s\t%s\t%s\n" % (k1, k2, w[k1, k2]))
+    with open('vsm.txt', 'w+') as file:
+        file.writelines(templine)
 
 
-ff_stop = open("stopword", "rb")
-for stop_line in ff_stop:
-    str_stop = str(stop_line).strip()
-    for sword in re.findall(letters, str_stop):
-        f_stop.append(sword)
+def get_stop():
+    ff_stop = open("stopword", "rb")
+    for stop_line in ff_stop:
+        str_stop = str(stop_line).strip()
+        for sword in re.findall(letters, str_stop):
+            f_stop.append(sword)
+
+
+get_stop()
 get_idf()
 get_w()
