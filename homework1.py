@@ -33,7 +33,7 @@ def collect():
                             word_dic[word] = 1
 
     for k, v in word_dic.items():
-        if v >= 500:
+        if v >= 3:
             word_bag[k] = v
             templine.append("%s\t%s\n" % (k, v))
 
@@ -46,3 +46,4 @@ def collect():
     return word_bag
 
 
+collect()
