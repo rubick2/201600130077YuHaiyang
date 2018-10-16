@@ -33,11 +33,11 @@ def collect():
                             word_dic[word] = 1
 
     for k, v in word_dic.items():
-        if v >= 3:
+        if 5 <= v <= 1000:
             word_bag[k] = v
             templine.append("%s\t%s\n" % (k, v))
 
-    with open('wordbag.txt', 'w+') as file_two:
+    with open('word_bag.txt', 'w+') as file_two:
         file_two.writelines(templine)
 
     print(word_bag)
