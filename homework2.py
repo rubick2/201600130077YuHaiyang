@@ -96,10 +96,10 @@ def get_result():
             p_doc[test_file, pack] = 0
             for test_word in doc_word:
                 if (pack, test_word) in word_class:
-                    p_doc[test_file, pack] += math.log(word_class[pack, test_word]/class_word_num[pack])
+                    p_doc[test_file, pack] += math.log((word_class[pack, test_word]+4)/class_word_num[pack]+1)
                     p_doc[test_file, pack] -= math.log(int(p_word[test_word])/word_sum)
                 else:
-                    p_doc[test_file, pack] += math.log(4/class_word_num[pack])
+                    p_doc[test_file, pack] += math.log(4/class_word_num[pack]+1)
                     p_doc[test_file, pack] -= math.log(int(p_word[test_word])/word_sum)
         # result = max(p_doc, key=p_doc.get())
         a = -999999
