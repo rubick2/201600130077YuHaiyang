@@ -51,8 +51,9 @@ def get_set():
         for file in os.listdir(class_dir):
             file_name = class_dir + "\\" + file
             num_doc += 1
-            if num_doc <= train_num[pack]/10:
+            if num_doc <= train_num[pack]/5:
                 test_set.append(file_name)
+                train_set.append(file_name)
             else:
                 train_set.append(file_name)
 
@@ -77,6 +78,7 @@ def get_word_class():
 
 
 def get_result():
+    global c
     p_doc = {}
     word_sum = cal_word()
     class_word_num = cal_word_class()
@@ -111,7 +113,8 @@ def get_result():
             cnt += 1.0
         doc_word.clear()
         p_doc.clear()
-    print(cnt * 100/all_cnt)
+    rate = cnt / all_cnt
+    print('%.2f%%' % (rate * 100))
 
 
 get_set()
