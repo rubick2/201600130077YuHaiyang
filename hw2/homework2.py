@@ -3,8 +3,8 @@ import os
 import re
 import math
 
+letters = re.compile(r"\w+")
 p_word = {}
-letters = re.compile(r'[a-zA-Z]+-?[a-zA-Z]+')
 test_set = []
 train_set = []
 

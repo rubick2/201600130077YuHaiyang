@@ -20,6 +20,7 @@ def get_list():
                 word_doc[word][0] += 1
             else:
                 word_doc[word] = [1, t_id, ]
+    return word_doc
     # print(word_doc['happy'])
     # print(tweets)
 
@@ -69,4 +70,5 @@ def get_query():
     print("Number of query is ", len(result_list), "\nID list is:", result_list)
 
 
-get_query()
+# get_query()
+
